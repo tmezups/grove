@@ -181,6 +181,7 @@ fn build_add_worktree_args<'a>(
 ) -> Vec<&'a str> {
     let mut args = vec!["worktree", "add"];
 
+    let worktree_path = worktree_path.strip_prefix(r"\\?\").unwrap_or(worktree_path);
     if create_branch {
         args.push("-b");
         args.push(branch_name);

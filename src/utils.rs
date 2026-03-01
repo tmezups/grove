@@ -671,7 +671,7 @@ pub fn is_windows() -> bool {
 /// On Windows, uses PowerShell. On Unix, uses $SHELL or /bin/sh.
 pub fn get_shell_for_platform() -> String {
     if is_windows() {
-        "powershell".to_string()
+        "pwsh".to_string()
     } else {
         env::var("SHELL").unwrap_or_else(|_| "/bin/sh".to_string())
     }
@@ -684,7 +684,7 @@ pub fn get_self_update_command(install_url: &str) -> (String, Vec<String>) {
     if is_windows() {
         let ps_install_url = format!("{}.ps1", install_url);
         (
-            "powershell".to_string(),
+            "pwsh".to_string(),
             vec![
                 "-NoProfile".to_string(),
                 "-Command".to_string(),
